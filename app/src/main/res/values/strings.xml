@@ -48,7 +48,7 @@
     <string name="entertainment_film_value" translatable="false">11</string>
     <string name="entertainment_books_value" translatable="false">10</string>
     <string name="entertainment_music_value" translatable="false">12</string>
-    <string name="entertainment_musical_theatres_value" translatable="false">13></string>
+    <string name="entertainment_musical_theatres_value" translatable="false">13</string>
     <string name="entertainment_television_value" translatable="false">14</string>
     <string name="entertainment_video_value" translatable="false">15</string>
     <string name="entertainment_board_value" translatable="false">16</string>

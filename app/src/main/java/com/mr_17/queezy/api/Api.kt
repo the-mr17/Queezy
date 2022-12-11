@@ -11,7 +11,8 @@ interface Api {
         @Query("encode") encode: String?,
         @Query("amount") amount: Int?,
         @Query("difficulty") difficulty: String?,
-        @Query("category") category: Int?
+        @Query("category") category: Int?,
+        @Query("type") type : String?
     ): Call<QuizQuestions>
 
     @GET("api_count.php")

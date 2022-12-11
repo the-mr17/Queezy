@@ -111,7 +111,8 @@ class MainActivity : AppCompatActivity() {
             "url3986",
             if (categoryCount >= 10) 10 else categoryCount - 1,
             difficulty,
-            category_value
+            category_value,
+            "multiple"
         )
         call.enqueue(object : Callback<QuizQuestions?> {
             override fun onResponse(
@@ -146,6 +147,8 @@ class MainActivity : AppCompatActivity() {
                 startQuizButton?.setClickable(true)
                 val intent = Intent(this@MainActivity, QuizActivity::class.java)
                 intent.putExtra("question", q)
+                intent.putExtra("category", categorySpinner!!.selectedItem.toString())
+                intent.putExtra("difficulty", difficultySpinner!!.selectedItem.toString())
                 startActivity(intent)
             }
 
