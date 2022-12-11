@@ -13,4 +13,9 @@
         <item name="android:statusBarColor">@color/purple</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="toolbarTitleAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">24dp</item>
+        <item name="fontFamily">@font/rubik_medium</item>
+    </style>
 </resources>
