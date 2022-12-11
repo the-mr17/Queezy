@@ -24,8 +24,8 @@ class WelcomeActivity : AppCompatActivity() {
 
         // checking clicks respective buttons and text
         loginButton!!.setOnClickListener { SendToActivity(LoginActivity::class.java, true) }
-        createAccountButton!!.setOnClickListener { Toast.makeText(this@WelcomeActivity, "", Toast.LENGTH_LONG).show() }
-        laterButton!!.setOnClickListener { Toast.makeText(this@WelcomeActivity, getString(R.string.feature_unavailable_msg), Toast.LENGTH_LONG).show() }
+        createAccountButton!!.setOnClickListener { SendToActivity(CreateAccountActivity::class.java, true) }
+        laterButton!!.setOnClickListener { SendToActivity(MainActivity::class.java, true) }
     }
 
     private fun InitializeFields() {

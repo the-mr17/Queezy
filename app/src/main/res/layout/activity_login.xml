@@ -11,13 +11,13 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_purple"
+        android:background="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Login"
         app:titleTextAppearance="@style/toolbarTitleAppearance"
-        app:titleTextColor="@color/black"
+        app:titleTextColor="@color/light_purple"
         app:navigationIcon="@drawable/ic_baseline_arrow_back_24"/>
 
     <androidx.appcompat.widget.AppCompatButton
