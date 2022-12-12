@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.mr_17.queezy.api.Api
 import com.mr_17.queezy.api.ApiCount
 import com.mr_17.queezy.api.QuizQuestions
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
     private var categorySpinner: Spinner? = null
     private var difficultySpinner: Spinner? = null
 
+    private var loading: LinearLayout? = null
+
     private var category: String? = "science_computer"
     private var difficulty: String? = "easy"
 
@@ -44,13 +48,19 @@ class MainActivity : AppCompatActivity() {
 
         InitializeFields()
 
-        startQuizButton!!.setOnClickListener { fetchQuestionCount() }
+        startQuizButton!!.setOnClickListener {
+            startQuizButton!!.visibility = View.GONE
+            loading!!.visibility = View.VISIBLE
+            fetchQuestionCount()
+        }
     }
 
     private fun InitializeFields() {
         startQuizButton = findViewById(R.id.start_quiz_button)
         categorySpinner = findViewById(R.id.choose_category_spinner)
         difficultySpinner = findViewById(R.id.choose_difficulty_spinner)
+
+        loading = findViewById(R.id.loading)
     }
 
     private fun SendToActivity(activityClass: Class<out Activity?>, backEnabled: Boolean) {
@@ -93,8 +103,8 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<ApiCount>, t: Throwable) {
                 Toast.makeText(applicationContext, "No Internet Connection", Toast.LENGTH_SHORT)
                     .show()
-                //progressBar!!.visibility = View.INVISIBLE
-                startQuizButton?.setClickable(true)
+                loading!!.visibility = View.GONE
+                startQuizButton!!.visibility = View.VISIBLE
             }
         })
     }
@@ -142,9 +152,11 @@ class MainActivity : AppCompatActivity() {
                         Log.v("answers", q!!.Answer.toString())
                     }
                 }
-                //progressBar!!.visibility = View.INVISIBLE
                 q!!.question?.get(0)?.let { Log.v("question1", it) }
-                startQuizButton?.setClickable(true)
+
+                loading!!.visibility = View.GONE
+                startQuizButton!!.visibility = View.VISIBLE
+
                 val intent = Intent(this@MainActivity, QuizActivity::class.java)
                 intent.putExtra("question", q)
                 intent.putExtra("category", categorySpinner!!.selectedItem.toString())
@@ -155,8 +167,8 @@ class MainActivity : AppCompatActivity() {
             override fun onFailure(call: Call<QuizQuestions?>, t: Throwable) {
                 Toast.makeText(applicationContext, "No Internet Connection", Toast.LENGTH_SHORT)
                     .show()
-                //progressBar!!.visibility = View.INVISIBLE
-                startQuizButton?.setClickable(true)
+                loading!!.visibility = View.GONE
+                startQuizButton!!.visibility = View.VISIBLE
             }
         })
     }
