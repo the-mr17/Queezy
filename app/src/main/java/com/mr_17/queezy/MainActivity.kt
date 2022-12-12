@@ -7,11 +7,10 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.progressindicator.CircularProgressIndicator
 import com.mr_17.queezy.api.Api
 import com.mr_17.queezy.api.ApiCount
 import com.mr_17.queezy.api.QuizQuestions
@@ -25,13 +24,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
     private var startQuizButton: Button? = null
     private var categorySpinner: Spinner? = null
     private var difficultySpinner: Spinner? = null
+    private var wishingMsg: TextView? = null
 
     private var loading: LinearLayout? = null
 
@@ -56,6 +55,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun InitializeFields() {
+        wishingMsg = findViewById(R.id.wishing_msg)
+        wishingMsg!!.setText("Good " + GetWishing())
         startQuizButton = findViewById(R.id.start_quiz_button)
         categorySpinner = findViewById(R.id.choose_category_spinner)
         difficultySpinner = findViewById(R.id.choose_difficulty_spinner)
@@ -281,5 +282,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun GetWishing(): String? {
+        val c = Calendar.getInstance()
+        val timeOfDay = c[Calendar.HOUR_OF_DAY]
+        return if (timeOfDay < 12) "Morning" else if (timeOfDay < 16) "Afternoon" else if (timeOfDay < 21) "Evening" else "Night"
     }
 }

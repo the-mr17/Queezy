@@ -1,7 +1,9 @@
 package com.mr_17.queezy
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
@@ -22,9 +24,12 @@ class QuizActivity : AppCompatActivity() {
     private var selectionOption: RadioButton? = null
 
     private var nextButton: Button? = null
+    private var submitButton: Button? = null
 
     private var qno: Int = 0
     private var qAndA: Question? = null
+
+    private var selectedOptions: ArrayList<Int>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +38,23 @@ class QuizActivity : AppCompatActivity() {
         InitializeFields()
 
         nextButton!!.setOnClickListener {
-            /*val selectedOption: Int = optionsGroup!!.checkedRadioButtonId
-
-            // Assigning id of the checked radio button
-            selectionOption = findViewById(selectedOption)
-
-            // Displaying text of the checked radio button in the form of toast
-            Toast.makeText(baseContext, optionsGroup?.indexOfChild(selectionOption).toString(), Toast.LENGTH_SHORT).show()*/
-
             SetNextQuestion()
+        }
+
+        submitButton!!.setOnClickListener {
+            AddSelectedOptions()
+            /*Toast.makeText(
+                baseContext,
+                selectedOptions.toString(),
+                Toast.LENGTH_SHORT
+            ).show()*/
+            submitButton!!.isClickable = false
+            //question!!.setText(selectedOptions.toString())
+
+            val intent = Intent(this@QuizActivity, StatsActivity::class.java)
+            intent.putExtra("qAndA", qAndA)
+            intent.putIntegerArrayListExtra("selectedOptions", selectedOptions)
+            startActivity(intent)
         }
     }
 
@@ -55,18 +68,28 @@ class QuizActivity : AppCompatActivity() {
         question = findViewById(R.id.question)
         optionsGroup = findViewById(R.id.options_group)
         nextButton = findViewById(R.id.next_button)
+        submitButton = findViewById(R.id.submit_button)
 
-        val i = intent
-        qAndA = i.getSerializableExtra("question") as Question?
-        selectedCategory!!.setText(i.getSerializableExtra("category") as String?)
-        selectedDifficulty!!.setText(i.getSerializableExtra("difficulty") as String?)
+        selectedOptions = ArrayList()
+
+        qAndA = intent.getSerializableExtra("question") as Question?
+        selectedCategory!!.setText(intent.getSerializableExtra("category") as String?)
+        selectedDifficulty!!.setText(intent.getSerializableExtra("difficulty") as String?)
 
         SetNextQuestion()
     }
 
     private fun SetNextQuestion()
     {
-        qno++
+        if(qno >= 1) {
+            AddSelectedOptions()
+        }
+
+        if(++qno == qAndA!!.question!!.size)
+        {
+            nextButton!!.visibility = View.GONE
+            submitButton!!.visibility = View.VISIBLE
+        }
 
         questionNumber!!.text = qno.toString()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -81,5 +104,16 @@ class QuizActivity : AppCompatActivity() {
         (optionsGroup!!.getChildAt(3) as RadioButton?)!!.setText(qAndA!!.optD!!.get(qno-1))
 
         optionsGroup!!.clearCheck()
+    }
+
+    private fun AddSelectedOptions()
+    {
+        val selectedOption: Int = optionsGroup!!.checkedRadioButtonId
+
+        // Assigning id of the checked radio button
+        selectionOption = findViewById(selectedOption)
+
+        // store the selected option
+        selectedOptions!!.add(optionsGroup?.indexOfChild(selectionOption)!! + 1)
     }
 }
