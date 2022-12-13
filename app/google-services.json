@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1052295142832",
+    "project_id": "the-queezy",
+    "storage_bucket": "the-queezy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052295142832:android:67543867b7d271c290ca75",
+        "android_client_info": {
+          "package_name": "com.mr_17.queezy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052295142832-2tslr5nmi1fb05cgvlrel7sjcho997e4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmMSRHFeAgMKNknVjizr92oCcVr9AyRaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052295142832-2tslr5nmi1fb05cgvlrel7sjcho997e4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
