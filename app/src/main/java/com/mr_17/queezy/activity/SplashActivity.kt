@@ -1,9 +1,10 @@
-package com.mr_17.queezy
+package com.mr_17.queezy.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.mr_17.queezy.R
 
 class SplashActivity : AppCompatActivity() {
 

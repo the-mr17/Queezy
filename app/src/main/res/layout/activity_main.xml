@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".activity.MainActivity"
     android:background="@drawable/bg2">
 
     <TextView
@@ -16,7 +16,7 @@
         android:fontFamily="@font/rubik_medium"
         android:gravity="center"
         android:text="Good Morning"
-        android:textColor="@color/pink"
+        android:textColor="@color/light_pink"
         android:textSize="16dp"
         android:textAllCaps="true"
         app:layout_constraintTop_toTopOf="parent"

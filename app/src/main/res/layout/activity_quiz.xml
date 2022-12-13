@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuizActivity"
+    tools:context=".activity.QuizActivity"
     android:background="@color/purple">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_margin="11dp"
         android:fontFamily="@font/rubik_medium"
         android:text="Category"
-        android:textColor="@color/white"
+        android:textColor="@color/light_purple"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,8 +65,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:progress="60"
-            app:indicatorColor="#FF8FA2"
-            app:trackColor="#FFCCD5"
+            app:indicatorColor="@color/dark_pink"
+            app:trackColor="@color/pink"
             app:trackThickness="35dp"
             android:progressBackgroundTintMode="src_atop"
             app:layout_constraintEnd_toEndOf="parent"

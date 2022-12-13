@@ -1,9 +1,12 @@
-package com.mr_17.queezy
+package com.mr_17.queezy.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
-import com.mr_17.queezy.question.Question
+import com.mr_17.queezy.R
+import com.mr_17.queezy.model.Question
 
 class StatsActivity : AppCompatActivity() {
 
@@ -23,6 +26,8 @@ class StatsActivity : AppCompatActivity() {
     private var completionPercentageTextView: TextView? = null
     private var skippedTextView: TextView? = null
 
+    private var viewSolutionsButton: Button? = null
+    private var homeButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +36,19 @@ class StatsActivity : AppCompatActivity() {
         InitializeFields()
         GetStats()
         SetStats()
+
+        viewSolutionsButton!!.setOnClickListener {
+            val intent = Intent(this@StatsActivity, SolutionsActivity::class.java)
+            intent.putExtra("qAndA", qAndA)
+            intent.putIntegerArrayListExtra("answers", answer)
+            intent.putIntegerArrayListExtra("selectedOptions", selectedOptions)
+            startActivity(intent)
+        }
+
+        homeButton!!.setOnClickListener {
+            val intent = Intent(this@StatsActivity, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun InitializeFields()
@@ -44,6 +62,8 @@ class StatsActivity : AppCompatActivity() {
         incorrectAnswerCountTextView = findViewById(R.id.incorrect_answers_count)
         completionPercentageTextView = findViewById(R.id.completion_percent)
         skippedTextView = findViewById(R.id.skipped_count)
+        viewSolutionsButton = findViewById(R.id.view_solutions_button)
+        homeButton = findViewById(R.id.home_button)
     }
 
     private fun GetStats()

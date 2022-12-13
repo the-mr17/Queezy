@@ -1,4 +1,4 @@
-package com.mr_17.queezy.question
+package com.mr_17.queezy.model
 
 import android.content.Context
 import com.mr_17.queezy.api.Result
@@ -20,7 +20,7 @@ class Question : Serializable {
     constructor(context: Context?) {
         this.context = context
         question = ArrayList()
-        results = ArrayList<Result>()
+        results = ArrayList()
         optA = ArrayList()
         optB = ArrayList()
         optC = ArrayList()

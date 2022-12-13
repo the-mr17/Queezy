@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StatsActivity">
+    tools:context=".activity.StatsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -14,7 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
         app:title="Results"
         app:titleTextAppearance="@style/toolbarTitleAppearance"
         app:titleTextColor="@color/light_purple" />
@@ -227,13 +226,13 @@
         app:layout_constraintTop_toBottomOf="@+id/stats" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/done_button"
+        android:id="@+id/home_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button_purple"
         android:fontFamily="@font/rubik_medium"
         android:padding="16dp"
-        android:text="Done"
+        android:text="Home"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16dp"

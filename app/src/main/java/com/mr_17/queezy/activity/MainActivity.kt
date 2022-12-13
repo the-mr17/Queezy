@@ -1,4 +1,4 @@
-package com.mr_17.queezy
+package com.mr_17.queezy.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -11,11 +11,12 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.mr_17.queezy.R
 import com.mr_17.queezy.api.Api
 import com.mr_17.queezy.api.ApiCount
 import com.mr_17.queezy.api.QuizQuestions
 import com.mr_17.queezy.api.Result
-import com.mr_17.queezy.question.Question
+import com.mr_17.queezy.model.Question
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -152,17 +153,28 @@ class MainActivity : AppCompatActivity() {
                         }
                         Log.v("answers", q!!.Answer.toString())
                     }
+                    q!!.question!!.get(0)!!.let { Log.v("question1", it) }
+
+                    loading!!.visibility = View.GONE
+                    startQuizButton!!.visibility = View.VISIBLE
+
+                    val intent = Intent(this@MainActivity, QuizActivity::class.java)
+                    intent.putExtra("question", q)
+                    intent.putExtra("category", categorySpinner!!.selectedItem.toString())
+                    intent.putExtra("difficulty", difficultySpinner!!.selectedItem.toString())
+                    startActivity(intent)
                 }
-                q!!.question?.get(0)?.let { Log.v("question1", it) }
+                else {
+                    Toast.makeText(
+                        applicationContext,
+                        "No questions available in this particular Category & Difficulty",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                    loading!!.visibility = View.GONE
+                    startQuizButton!!.visibility = View.VISIBLE
+                }
 
-                loading!!.visibility = View.GONE
-                startQuizButton!!.visibility = View.VISIBLE
-
-                val intent = Intent(this@MainActivity, QuizActivity::class.java)
-                intent.putExtra("question", q)
-                intent.putExtra("category", categorySpinner!!.selectedItem.toString())
-                intent.putExtra("difficulty", difficultySpinner!!.selectedItem.toString())
-                startActivity(intent)
             }
 
             override fun onFailure(call: Call<QuizQuestions?>, t: Throwable) {

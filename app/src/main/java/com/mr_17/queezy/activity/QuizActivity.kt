@@ -1,4 +1,4 @@
-package com.mr_17.queezy
+package com.mr_17.queezy.activity
 
 import android.content.Intent
 import android.os.Build
@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import com.google.android.material.progressindicator.CircularProgressIndicator
-import com.mr_17.queezy.question.Question
+import com.mr_17.queezy.R
+import com.mr_17.queezy.model.Question
 
 class QuizActivity : AppCompatActivity() {
 
@@ -54,6 +54,7 @@ class QuizActivity : AppCompatActivity() {
             val intent = Intent(this@QuizActivity, StatsActivity::class.java)
             intent.putExtra("qAndA", qAndA)
             intent.putIntegerArrayListExtra("selectedOptions", selectedOptions)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
     }

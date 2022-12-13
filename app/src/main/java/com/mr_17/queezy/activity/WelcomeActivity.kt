@@ -1,14 +1,12 @@
-package com.mr_17.queezy
+package com.mr_17.queezy.activity
 
 import android.app.Activity
-import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
+import com.mr_17.queezy.R
 
 class WelcomeActivity : AppCompatActivity() {
 
