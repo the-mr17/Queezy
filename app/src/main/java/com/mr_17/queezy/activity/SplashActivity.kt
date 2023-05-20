@@ -25,18 +25,19 @@ class SplashActivity : AppCompatActivity() {
 
         Handler().postDelayed({
             var intent: Intent
-            if(currentUser == null) {
+            /*if(currentUser == null) {
                 intent = Intent(this@SplashActivity, WelcomeActivity::class.java)
             }
             else
             {
                 CheckJoining()
                 intent = Intent(this@SplashActivity, MainActivity::class.java)
-            }
+            }*/
+            intent = Intent(this@SplashActivity, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             finish()
-        }, 3000)
+        }, 2000)
     }
 
     private fun InitializeFields() {
